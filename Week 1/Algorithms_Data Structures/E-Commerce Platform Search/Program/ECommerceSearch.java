@@ -26,19 +26,27 @@ public class ECommerceSearch {
 
         String searchTerm = "Watch";
 
+		long start=System.nanoTime();
         Product result1 = linearSearch(products, searchTerm);
         if (result1 != null)
             System.out.println("Linear Search: Found " + result1.productName + " in " + result1.category);
         else
             System.out.println("Linear Search: Product not found");
+		long end=System.nanoTime();
+		System.out.println("Time take by Linear Search: "+(end-start)+" nano-seconds");
+		System.out.println();
 
+
+		start=System.nanoTime();
         Arrays.sort(products, Comparator.comparing(p -> p.productName.toLowerCase()));
-
         Product result2 = binarySearch(products, searchTerm);
         if (result2 != null)
             System.out.println("Binary Search: Found " + result2.productName + " in " + result2.category);
         else
             System.out.println("Binary Search: Product not found");
+		end=System.nanoTime();
+		System.out.println("Time take by Binary Search: "+(end-start)+" nano-seconds");
+		System.out.println();
     }
 
     public static Product linearSearch(Product[] products, String name) {
